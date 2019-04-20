@@ -7,12 +7,17 @@ help() {
   echo "Usage: ./error_handling <greetee>"
 }
 
-expression="^[A-Z][a-zA-Z]+((( and )[A-Z][a-zA-Z]+)+)?"
+expression="^[A-Z][a-zA-Z]+((( and )[A-Z][a-zA-Z]+)+)?$"
 
 main() {
   input=$@
-  if 
-      echo "Hello, ${input}"
+  if [[ ${input} =~ ${expression}  ]]; then
+    echo "Hello, ${input}"
+    return 0
+  else
+    help
+    return 1
+  fi
 }
 
 main "$@"
