@@ -10,8 +10,8 @@ help() {
 expression="^[A-Z][a-zA-Z]+((( and )[A-Z][a-zA-Z]+)+)?$"
 
 main() {
-  input=$@
-  if [[ ${input} =~ ${expression}  ]]; then
+  input="$@"
+  if [[ ${input} =~ ${expression}  ]] || [[ -z "${1:-}" && $# -ne 0 ]]; then
     echo "Hello, ${input}"
     return 0
   else
